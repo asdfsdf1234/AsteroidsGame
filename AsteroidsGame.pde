@@ -1,15 +1,59 @@
-//your variable declarations here
+SpaceShip bob = new SpaceShip();
 public void setup() 
 {
-  //your code here
+  size(800,800);
+
 }
 public void draw() 
 {
-  //your code here
+  background(0);
+  bob.show();
+  bob.move();
+  bob.keyTyped();
 }
-class SpaceShip //extends Floater  
+class SpaceShip extends Floater  
 {   
-    //your code here
+    public SpaceShip(){
+      corners=4; 
+      int[] xS = {-8,16,-8,-2};
+      int[] yS = {-8,0,8,0};
+      xCorners = xS;
+      yCorners = yS;
+      myColor = color(255,255,255);
+      myCenterX = 400;
+      myCenterY = 400;
+      myDirectionX = 0;
+      myDirectionY = 0;
+      myPointDirection =0;
+      
+    }
+    public void setX(int x){myCenterX=x;}
+    public int getX(){return (int)myCenterX;}
+    public void setY(int y){ myCenterY=y;}
+    public int getY(){return (int)myCenterY;}
+    public void setDirectionX(double x){myDirectionX=x;}
+    public void setDirectionY(double y){myDirectionY=y;}
+    public double getDirectionX(){return myDirectionX;}
+    public double getDirectionY(){return myDirectionY;}
+    public void setPointDirection(int degrees){myPointDirection=degrees;}
+    public double getPointDirection(){return myPointDirection;}
+
+    public void keyTyped(){
+      if(keyCode==RIGHT)
+      {
+        bob.rotate(1);
+      }
+      if(keyCode==LEFT)
+      {
+        bob.rotate(-1);
+      }
+      if(keyCode==DOWN)
+      {
+        accelerate(-1);
+      }
+      
+    }
+
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -47,7 +91,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void move ()   //move the floater in the current direction of travel
   {      
-    //change the x and y coordinates by myDirectionX and myDirectionY       
+         
     myCenterX += myDirectionX;    
     myCenterY += myDirectionY;     
 

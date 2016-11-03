@@ -1,7 +1,27 @@
 SpaceShip bob = new SpaceShip();
+ public void keyPressed()
+    {
+      if  (keyCode==RIGHT)
+      {
+        bob.rotate(10);
+      }
+      if(keyCode==LEFT)
+      {
+        bob.rotate(-10);
+      }
+      
+      if(keyCode==UP)
+      {
+        
+        {
+          bob.accelerate(.75);
+        }
+        
+      }
+    } 
 public void setup() 
 {
-  size(800,800);
+  size(800,600);
 
 }
 public void draw() 
@@ -9,7 +29,6 @@ public void draw()
   background(0);
   bob.show();
   bob.move();
-  bob.keyTyped();
 }
 class SpaceShip extends Floater  
 {   
@@ -37,22 +56,7 @@ class SpaceShip extends Floater
     public double getDirectionY(){return myDirectionY;}
     public void setPointDirection(int degrees){myPointDirection=degrees;}
     public double getPointDirection(){return myPointDirection;}
-
-    public void keyTyped(){
-      if(keyCode==RIGHT)
-      {
-        bob.rotate(1);
-      }
-      if(keyCode==LEFT)
-      {
-        bob.rotate(-1);
-      }
-      if(keyCode==DOWN)
-      {
-        accelerate(-1);
-      }
-      
-    }
+    
 
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 

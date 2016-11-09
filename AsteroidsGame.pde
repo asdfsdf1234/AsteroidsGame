@@ -14,7 +14,7 @@ SpaceShip bob = new SpaceShip();
       {
         
         {
-          bob.accelerate(.75);
+          bob.accelerate(.5);
         }
         
       }
@@ -23,12 +23,14 @@ public void setup()
 {
   size(800,600);
 
-}
+}                         
 public void draw() 
 {
   background(0);
+
   bob.show();
   bob.move();
+
 }
 class SpaceShip extends Floater  
 {   
@@ -40,7 +42,7 @@ class SpaceShip extends Floater
       yCorners = yS;
       myColor = color(255,255,255);
       myCenterX = 400;
-      myCenterY = 400;
+      myCenterY = 300;
       myDirectionX = 0;
       myDirectionY = 0;
       myPointDirection =0;
@@ -59,6 +61,7 @@ class SpaceShip extends Floater
     
 
 }
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
@@ -136,3 +139,19 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
 } 
 
+class Star
+{
+  private int mysX;
+  private int mysY;
+  public Star(int x, int y)
+  {
+    mysX=x;
+    mysY=y;
+  }
+
+  public void show()
+  {
+    fill(255);
+    ellipse(mysX,mysY,5,5);
+  }
+}

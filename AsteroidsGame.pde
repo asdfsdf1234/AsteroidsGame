@@ -19,18 +19,25 @@ SpaceShip bob = new SpaceShip();
         
       }
     } 
+Star[] one =new Star[250];
 public void setup() 
 {
   size(800,600);
-
+  for(int i=0; i<one.length; i++)
+  {
+    one[i]= new Star();
+  }
 }                         
 public void draw() 
 {
   background(0);
-
+ 
   bob.show();
   bob.move();
-
+  for(int i=0; i<one.length; i++)
+  {
+    one[i].show();
+  }
 }
 class SpaceShip extends Floater  
 {   
@@ -141,12 +148,12 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
 
 class Star
 {
-  private int mysX;
-  private int mysY;
-  public Star(int x, int y)
+  private float mysX;
+  private float mysY;
+  public Star()
   {
-    mysX=x;
-    mysY=y;
+    mysX=(float)Math.random()*801;
+    mysY=(float)Math.random()*601;
   }
 
   public void show()

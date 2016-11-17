@@ -20,6 +20,7 @@ SpaceShip bob = new SpaceShip();
       }
     } 
 Star[] one =new Star[250];
+Asteroid two =new Asteroid();
 public void setup() 
 {
   size(800,600);
@@ -31,7 +32,8 @@ public void setup()
 public void draw() 
 {
   background(0);
- 
+  two.show();
+  //two.rotate(two.getrSpeed());    
   bob.show();
   bob.move();
   for(int i=0; i<one.length; i++)
@@ -161,4 +163,34 @@ class Star
     fill(255);
     ellipse(mysX,mysY,5,5);
   }
+}
+
+class Asteroid extends Floater
+{
+  private int rSpeed;
+  Asteroid(){
+      corners=9; 
+      int[] xS = {-6,-3,6,12,12,6,-6,-12,-12};
+      int[] yS = {8,4,10,4,-4,-10,-10,-4,4};
+      xCorners = xS;
+      yCorners = yS;
+      myColor = color(255,255,255);
+      myCenterX = 400;
+      myCenterY = 300;
+      myDirectionX = 0;
+      myDirectionY = 0;
+      myPointDirection =0;
+      rSpeed= (int)(Math.random()*8-4);
+  } 
+  public void setX(int x){myCenterX=x;}
+  public int getX(){return (int)myCenterX;}
+  public void setY(int y){ myCenterY=y;}
+  public int getY(){return (int)myCenterY;}
+  public void setDirectionX(double x){myDirectionX=x;}
+  public void setDirectionY(double y){myDirectionY=y;}
+  public double getDirectionX(){return myDirectionX;}
+  public double getDirectionY(){return myDirectionY;}
+  public void setPointDirection(int degrees){myPointDirection=degrees;}
+  public double getPointDirection(){return myPointDirection;}
+  public int getrSpeed(){return rSpeed;}
 }

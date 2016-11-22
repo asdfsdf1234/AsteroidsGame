@@ -33,7 +33,7 @@ public void draw()
 {
   background(0);
   two.show();
-  //two.rotate(two.getrSpeed());    
+  two.rotate(two.getrSpeed());    
   bob.show();
   bob.move();
   for(int i=0; i<one.length; i++)
@@ -170,8 +170,8 @@ class Asteroid extends Floater
   private int rSpeed;
   Asteroid(){
       corners=9; 
-      int[] xS = {-6,-3,6,12,12,6,-6,-12,-12};
-      int[] yS = {8,4,10,4,-4,-10,-10,-4,4};
+      int[] xS = {};
+      int[] yS = {};
       xCorners = xS;
       yCorners = yS;
       myColor = color(255,255,255);
@@ -193,4 +193,21 @@ class Asteroid extends Floater
   public void setPointDirection(int degrees){myPointDirection=degrees;}
   public double getPointDirection(){return myPointDirection;}
   public int getrSpeed(){return rSpeed;}
+  public void show(){
+    noFill();
+    stroke(myColor);    
+    //convert degrees to radians for sin and cos         
+    double dRadians = myPointDirection*(Math.PI/180);                 
+    int xRotatedTranslated, yRotatedTranslated;    
+    beginShape();         
+    for(int nI = 0; nI < corners; nI++)    
+    {     
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+    }   
+    endShape(CLOSE);  
+  }  
+  
 }

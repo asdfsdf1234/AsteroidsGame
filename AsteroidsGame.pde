@@ -20,7 +20,7 @@ SpaceShip bob = new SpaceShip();
       }
     } 
 Star[] one =new Star[250];
-Asteroid two =new Asteroid();
+ArrayList<Asteroid> arraylist = new ArrayList<Asteroid>();
 public void setup() 
 {
   size(800,600);
@@ -31,9 +31,7 @@ public void setup()
 }                         
 public void draw() 
 {
-  background(0);
-  two.show();
-  two.rotate(two.getrSpeed());    
+  background(0); 
   bob.show();
   bob.move();
   for(int i=0; i<one.length; i++)
@@ -167,11 +165,11 @@ class Star
 
 class Asteroid extends Floater
 {
-  private int rSpeed;
+  private double rSpeed;
   Asteroid(){
-      corners=9; 
-      int[] xS = {};
-      int[] yS = {};
+      corners=8; 
+      int[] xS = {-16,-4,4,16,16,4,-4,-16}; 
+      int[] yS = {16,20,20,8,-8,-20,-20,-8};
       xCorners = xS;
       yCorners = yS;
       myColor = color(255,255,255);
@@ -180,7 +178,7 @@ class Asteroid extends Floater
       myDirectionX = 0;
       myDirectionY = 0;
       myPointDirection =0;
-      rSpeed= (int)(Math.random()*8-4);
+      rSpeed= Math.random()*8-4;
   } 
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
@@ -192,7 +190,7 @@ class Asteroid extends Floater
   public double getDirectionY(){return myDirectionY;}
   public void setPointDirection(int degrees){myPointDirection=degrees;}
   public double getPointDirection(){return myPointDirection;}
-  public int getrSpeed(){return rSpeed;}
+  public double getrSpeed(){return rSpeed;}
   public void show(){
     noFill();
     stroke(myColor);    
@@ -209,5 +207,10 @@ class Asteroid extends Floater
     }   
     endShape(CLOSE);  
   }  
+    public void rotate (double nDegreesOfRotation)   
+  {     
+    //rotates the floater by a given number of degrees    
+    myPointDirection+=nDegreesOfRotation;   
+  }   
   
 }

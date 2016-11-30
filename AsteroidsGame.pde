@@ -20,13 +20,18 @@ SpaceShip bob = new SpaceShip();
       }
     } 
 Star[] one =new Star[250];
-ArrayList<Asteroid> arraylist = new ArrayList<Asteroid>();
+ArrayList<Asteroid> two = new ArrayList<Asteroid>();
+
 public void setup() 
 {
   size(800,600);
   for(int i=0; i<one.length; i++)
   {
     one[i]= new Star();
+  }
+  for(int j=0; j<11; j++)
+  {
+    two.add(j, new Asteroid());
   }
 }                         
 public void draw() 
@@ -38,6 +43,13 @@ public void draw()
   {
     one[i].show();
   }
+  for(int j=0; j<10; j++)
+  {
+    two.get(j).show();
+    two.get(j).move();
+    two.get(j).rotate(1);
+  }
+
 }
 class SpaceShip extends Floater  
 {   
@@ -173,8 +185,8 @@ class Asteroid extends Floater
       xCorners = xS;
       yCorners = yS;
       myColor = color(255,255,255);
-      myCenterX = 400;
-      myCenterY = 300;
+      myCenterX=(float)Math.random()*801;
+      myCenterY=(float)Math.random()*601;
       myDirectionX = 0;
       myDirectionY = 0;
       myPointDirection =0;

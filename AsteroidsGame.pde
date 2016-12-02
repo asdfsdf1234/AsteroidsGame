@@ -14,7 +14,7 @@ SpaceShip bob = new SpaceShip();
       {
         
         {
-          bob.accelerate(.5);
+          bob.BigL(1);
         }
         
       }
@@ -77,7 +77,20 @@ class SpaceShip extends Floater
     public double getDirectionY(){return myDirectionY;}
     public void setPointDirection(int degrees){myPointDirection=degrees;}
     public double getPointDirection(){return myPointDirection;}
-    
+    void BigL(double drank)
+    {
+      //convert the current direction the floater is pointing to radians    
+      double dRadians =myPointDirection*(Math.PI/180);     
+      //change coordinates of direction of travel    
+      myDirectionX += ((drank) * Math.cos(dRadians));    
+      myDirectionY += ((drank) * Math.sin(dRadians));
+
+      if(Math.sqrt(myDirectionX*myDirectionX+myDirectionY*myDirectionY) >5 )
+      {
+        myDirectionX += -((drank) * Math.cos(dRadians));    
+        myDirectionY += -((drank) * Math.sin(dRadians));
+      }
+    }
 
 }
 
@@ -108,7 +121,8 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     double dRadians =myPointDirection*(Math.PI/180);     
     //change coordinates of direction of travel    
     myDirectionX += ((dAmount) * Math.cos(dRadians));    
-    myDirectionY += ((dAmount) * Math.sin(dRadians));       
+    myDirectionY += ((dAmount) * Math.sin(dRadians));
+           
   }   
   public void rotate (int nDegreesOfRotation)   
   {     

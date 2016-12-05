@@ -14,7 +14,7 @@ SpaceShip bob = new SpaceShip();
       {
         
         {
-          bob.BigL(1);
+          bob.BigL(.5);
         }
         
       }
@@ -51,6 +51,7 @@ public void draw()
   }
 
 }
+
 class SpaceShip extends Floater  
 {   
     public SpaceShip(){
@@ -85,7 +86,7 @@ class SpaceShip extends Floater
       myDirectionX += ((drank) * Math.cos(dRadians));    
       myDirectionY += ((drank) * Math.sin(dRadians));
 
-      if(Math.sqrt(myDirectionX*myDirectionX+myDirectionY*myDirectionY) >5 )
+      if(Math.sqrt(myDirectionX*myDirectionX+myDirectionY*myDirectionY) >3 )
       {
         myDirectionX += -((drank) * Math.cos(dRadians));    
         myDirectionY += -((drank) * Math.sin(dRadians));
@@ -239,4 +240,11 @@ class Asteroid extends Floater
     myPointDirection+=nDegreesOfRotation;   
   }   
   
+}
+
+class Bullet extends SpaceShip
+{
+  Bullet(){
+
+  }
 }

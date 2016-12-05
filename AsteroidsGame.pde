@@ -49,7 +49,12 @@ public void draw()
     two.get(j).move();
     two.get(j).rotate(1);
   }
-
+/*
+  for(int k=0 k<10; k++)
+  {
+    for(int l=0; l<kms.size;)
+  }
+*/
 }
 
 class SpaceShip extends Floater  
@@ -195,15 +200,15 @@ class Asteroid extends Floater
   private double rSpeed;
   Asteroid(){
       corners=8; 
-      int[] xS = {-16,-4,4,16,16,4,-4,-16}; 
-      int[] yS = {16,20,20,8,-8,-20,-20,-8};
+      int[] xS = {-32,-8,8,32,32,8,-8,-32}; 
+      int[] yS = {32,40,40,16,-16,-40,-40,-16};
       xCorners = xS;
       yCorners = yS;
       myColor = color(255,255,255);
       myCenterX=(float)Math.random()*801;
       myCenterY=(float)Math.random()*601;
-      myDirectionX = Math.random()*3;
-      myDirectionY = Math.random()*3;
+      myDirectionX = Math.random()*2;
+      myDirectionY = Math.random()*2;
       myPointDirection =0;
       rSpeed= Math.random()*8-4;
   } 

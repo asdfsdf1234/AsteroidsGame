@@ -48,7 +48,9 @@ public void draw()
   background(0); 
   bob.show();
   bob.move();
-  //three.show();
+  Bullet three = new Bullet(bob);
+  three.show();
+  three.move();
   for(int i=0; i<one.length; i++)
   {
     one[i].show();
@@ -272,7 +274,7 @@ class Bullet extends Floater
       myCenterY = xd.getY();
       myDirectionX = 5 * Math.cos(dRadians) + xd.getDirectionX();
       myDirectionY = 5 * Math.cos(dRadians) + xd.getDirectionY();
-      myPointDirection =0;
+      myPointDirection =xd.getPointDirection();
  }
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
@@ -284,4 +286,6 @@ class Bullet extends Floater
   public double getDirectionY(){return myDirectionY;}
   public void setPointDirection(int degrees){myPointDirection=degrees;}
   public double getPointDirection(){return myPointDirection;}
+
+
 }

@@ -23,7 +23,7 @@ Star[] one =new Star[250];
 
 ArrayList<Asteroid> two = new ArrayList<Asteroid>();
 
-Bullet three = new Bullet(bob);
+//Bullet three = new Bullet(bob);
 public void setup() 
 {
   size(800,600);
@@ -41,7 +41,7 @@ public void draw()
   background(0); 
   bob.show();
   bob.move();
-  three.show();
+  //three.show();
   for(int i=0; i<one.length; i++)
   {
     one[i].show();
@@ -262,8 +262,8 @@ class Bullet extends Floater
       myColor = color(255,255,255);
       myCenterX = xd.getX();
       myCenterY = xd.getY();
-      myDirectionX = 5 * Math.cos(dRadians) + xd.getDirectionX();
-      myDirectionY = 5 * Math.cos(dRadians) + xd.getDirectionY;
+      //myDirectionX = 5 * Math.cos(dRadians) + xd.getDirectionX();
+      //myDirectionY = 5 * Math.cos(dRadians) + xd.getDirectionY;
       myPointDirection =0;
  }
   public void setX(int x){myCenterX=x;}

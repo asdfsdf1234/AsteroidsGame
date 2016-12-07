@@ -22,7 +22,7 @@ SpaceShip bob = new SpaceShip();
         bob.setY((int)(Math.random()*600));
         bob.setDirectionX(0);
         bob.setDirectionY(0);
-        bob.setPointDirection(0);
+        bob.setPointDirection((int)(Math.random()*360));
       }
       
     } 
@@ -262,6 +262,7 @@ class Bullet extends Floater
 {
  Bullet(SpaceShip xd){
       corners=4; 
+      double dRadians = myPointDirection*(Math.PI/180);
       int[] xS = {-4,4,4,-4};
       int[] yS = {4,4,-4,-4};
       xCorners = xS;
@@ -269,8 +270,8 @@ class Bullet extends Floater
       myColor = color(255,255,255);
       myCenterX = xd.getX();
       myCenterY = xd.getY();
-      //myDirectionX = 5 * Math.cos(dRadians) + xd.getDirectionX();
-      //myDirectionY = 5 * Math.cos(dRadians) + xd.getDirectionY;
+      myDirectionX = 5 * Math.cos(dRadians) + xd.getDirectionX();
+      myDirectionY = 5 * Math.cos(dRadians) + xd.getDirectionY();
       myPointDirection =0;
  }
   public void setX(int x){myCenterX=x;}

@@ -13,11 +13,18 @@ SpaceShip bob = new SpaceShip();
       if(keyCode==UP)
       {
         
-        {
           bob.BigL(1);
-        }
-        
+      } 
+      if(keyCode==DOWN)
+      {
+
+        bob.setX((int)(Math.random()*800));
+        bob.setY((int)(Math.random()*600));
+        bob.setDirectionX(0);
+        bob.setDirectionY(0);
+        bob.setPointDirection(0);
       }
+      
     } 
 Star[] one =new Star[250];
 

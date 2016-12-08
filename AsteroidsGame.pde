@@ -18,8 +18,8 @@ SpaceShip bob = new SpaceShip();
       if(keyCode==DOWN)
       {
 
-        bob.setX((int)(Math.random()*800));
-        bob.setY((int)(Math.random()*600));
+        bob.setX((int)(Math.random()*width));
+        bob.setY((int)(Math.random()*height));
         bob.setDirectionX(0);
         bob.setDirectionY(0);
         bob.setPointDirection((int)(Math.random()*360));
@@ -28,12 +28,12 @@ SpaceShip bob = new SpaceShip();
     } 
 Star[] one =new Star[250];
 
-ArrayList<Asteroid> two = new ArrayList<Asteroid>();
+ArrayList<Asteroid> two = new ArrayList<Asteroid>(); 
 
-//Bullet three = new Bullet(bob);
+Bullet three = new Bullet(bob);
 public void setup() 
 {
-  size(800,600);
+  size(1000,800);
   for(int i=0; i<one.length; i++)
   {
     one[i]= new Star();
@@ -48,7 +48,7 @@ public void draw()
   background(0); 
   bob.show();
   bob.move();
-  Bullet three = new Bullet(bob);
+  //Bullet three = new Bullet(bob);
   three.show();
   three.move();
   for(int i=0; i<one.length; i++)
@@ -125,7 +125,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   abstract public int getX();   
   abstract public void setY(int y);   
   abstract public int getY();   
-  abstract public void setDirectionX(double x);   
+  abstract public void setDirectionX(double x);     
   abstract public double getDirectionX();   
   abstract public void setDirectionY(double y);   
   abstract public double getDirectionY();   
@@ -196,8 +196,8 @@ class Star
   private float mysY;
   public Star()
   {
-    mysX=(float)Math.random()*801;
-    mysY=(float)Math.random()*601;
+    mysX=(float)Math.random()*width;
+    mysY=(float)Math.random()*height;
   }
 
   public void show()
@@ -217,8 +217,8 @@ class Asteroid extends Floater
       xCorners = xS;
       yCorners = yS;
       myColor = color(102,51,0);
-      myCenterX=(float)Math.random()*801;
-      myCenterY=(float)Math.random()*601;
+      myCenterX=(float)Math.random()*width;
+      myCenterY=(float)Math.random()*height;
       myDirectionX = Math.random()*2;
       myDirectionY = Math.random()*2;
       myPointDirection =0;
@@ -287,5 +287,8 @@ class Bullet extends Floater
   public void setPointDirection(int degrees){myPointDirection=degrees;}
   public double getPointDirection(){return myPointDirection;}
 
+  void show(){
+    ellipse((int)myCenterX, (int)myCenterY, 5, 5);
+  }
 
 }

@@ -259,7 +259,7 @@ class Asteroid extends Floater
   private double rSpeed;
   Asteroid(){
       corners=8; 
-      int[] xS = {-50,-4,4,50,32,16,-8,-32}; 
+      int[] xS = {-32,-8,8,32,32,8,-8,-32}; 
       int[] yS = {32,40,40,16,-16,-40,-40,-16};
       xCorners = xS;
       yCorners = yS;

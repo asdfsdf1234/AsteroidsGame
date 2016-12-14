@@ -1,4 +1,9 @@
 SpaceShip bob = new SpaceShip();
+ArrayList<Asteroid> two = new ArrayList<Asteroid>(); 
+ArrayList<Bullet> to = new ArrayList<Bullet>();
+boolean go = true;
+int x=0;
+int y=11;
  public void keyPressed()
     {
       if  (keyCode==RIGHT)
@@ -24,13 +29,17 @@ SpaceShip bob = new SpaceShip();
         bob.setDirectionY(0);
         bob.setPointDirection((int)(Math.random()*360));
       }
-      
+      if(keyCode==32)
+      {
+        to.add(x, new Bullet(bob));
+        x++;
+      }
     } 
 Star[] one =new Star[250];
 
-ArrayList<Asteroid> two = new ArrayList<Asteroid>(); 
+//ArrayList<Asteroid> two = new ArrayList<Asteroid>(); 
+//ArrayList<Bullet> to = new ArrayList<Bullet>();
 
-Bullet three = new Bullet(bob);
 public void setup() 
 {
   size(1000,800);
@@ -42,31 +51,68 @@ public void setup()
   {
     two.add(j, new Asteroid());
   }
+  
 }                         
 public void draw() 
 {
+
+  if(go==true)
+  {
   background(0); 
   bob.show();
   bob.move();
-  //Bullet three = new Bullet(bob);
-  three.show();
-  three.move();
+  
   for(int i=0; i<one.length; i++)
   {
     one[i].show();
   }
-  for(int j=0; j<10; j++)
+  for(int j=0; j<two.size(); j++)
   {
     two.get(j).show();
     two.get(j).move();
     two.get(j).rotate(1);
   }
-/*
-  for(int k=0 k<10; k++)
+  for(int z=0; z<to.size(); z++)
   {
-    for(int l=0; l<kms.size;)
+    to.get(z).show();
+    to.get(z).move();
   }
-*/
+  for(int r=0; r<two.size(); r++)
+  {
+    for(int k = 0; k < to.size() ; k++){
+      if( dist(two.get(r).getX() , two.get(r).getY() , to.get(k).getX() , to.get(k).getY() ) < 35){
+        two.remove(r);
+        to.remove(k);
+        to.add(k,new Bullet(bob));
+        y--;
+        if(y==0)
+        {
+          go=false;
+        }
+        break; 
+      }
+    }
+  }
+  } 
+
+
+  if(go==false)
+  {
+    background(0);
+    textSize(60);
+    text("YOU WIN", 375, 200);
+    noFill();
+    stroke(255);
+    rect(100,300,810,400);
+    textSize(20);
+    text("After destroying all of the robots a ship came out and thanked you for your deeds.", 105,320,100);
+    text("You later decided that you would become someone who helps people for a living.", 105,360,100);
+    text("You set off again. This time without autopilot, and look for people who need help", 105,400,100);
+    text("for the rest of your life. You get paid pretty well too.", 105,420,100);
+
+
+
+  }
 }
 
 class SpaceShip extends Floater  
@@ -103,7 +149,7 @@ class SpaceShip extends Floater
       myDirectionX += ((drank) * Math.cos(dRadians));    
       myDirectionY += ((drank) * Math.sin(dRadians));
 
-      if(Math.sqrt(myDirectionX*myDirectionX+myDirectionY*myDirectionY) >3 )
+      if(Math.sqrt(myDirectionX*myDirectionX+myDirectionY*myDirectionY) >3)
       {
         myDirectionX += -((drank) * Math.cos(dRadians));    
         myDirectionY += -((drank) * Math.sin(dRadians));
@@ -205,6 +251,7 @@ class Star
     fill(255);
     ellipse(mysX,mysY,5,5);
   }
+  
 }
 
 class Asteroid extends Floater
@@ -212,11 +259,12 @@ class Asteroid extends Floater
   private double rSpeed;
   Asteroid(){
       corners=8; 
-      int[] xS = {-32,-8,8,32,32,8,-8,-32}; 
+      int[] xS = {-50,-4,4,50,32,16,-8,-32}; 
       int[] yS = {32,40,40,16,-16,-40,-40,-16};
       xCorners = xS;
       yCorners = yS;
-      myColor = color(102,51,0);
+      //Color = color(102,51,0);
+      myColor = color(50 );
       myCenterX=(float)Math.random()*width;
       myCenterY=(float)Math.random()*height;
       myDirectionX = Math.random()*2;
@@ -251,6 +299,9 @@ class Asteroid extends Floater
       vertex(xRotatedTranslated,yRotatedTranslated);    
     }   
     endShape(CLOSE);  
+    stroke(0);
+    fill(255,0,0);
+    ellipse((float)myCenterX,(float)myCenterY,10,10);
   }  
     public void rotate (double nDegreesOfRotation)   
   {     
@@ -262,20 +313,15 @@ class Asteroid extends Floater
 
 class Bullet extends Floater
 {
- Bullet(SpaceShip xd){
-      corners=4; 
-      double dRadians = myPointDirection*(Math.PI/180);
-      int[] xS = {-4,4,4,-4};
-      int[] yS = {4,4,-4,-4};
-      xCorners = xS;
-      yCorners = yS;
-      myColor = color(255,255,255);
-      myCenterX = xd.getX();
-      myCenterY = xd.getY();
-      myDirectionX = 5 * Math.cos(dRadians) + xd.getDirectionX();
-      myDirectionY = 5 * Math.cos(dRadians) + xd.getDirectionY();
-      myPointDirection =xd.getPointDirection();
- }
+  Bullet(SpaceShip theShip){
+    myCenterX = theShip.getX();
+    myCenterY = theShip.getY();
+    myPointDirection = theShip.getPointDirection();
+    double dRadians =myPointDirection*(Math.PI/180);
+    myDirectionX = 5 * Math.cos(dRadians) + theShip.getDirectionX();
+    myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
+    
+  }
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
   public void setY(int y){ myCenterY=y;}
@@ -288,7 +334,16 @@ class Bullet extends Floater
   public double getPointDirection(){return myPointDirection;}
 
   void show(){
+    fill(255);
+    noStroke();
     ellipse((int)myCenterX, (int)myCenterY, 5, 5);
   }
 
+  void move()
+  {
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;    
+  }
 }
+
+
